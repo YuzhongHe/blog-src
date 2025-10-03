@@ -1,0 +1,13 @@
+baseURL = "https://YuzhongHe.github.io/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 5
+
+
+[params]
+  defaultTheme = "light"
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
