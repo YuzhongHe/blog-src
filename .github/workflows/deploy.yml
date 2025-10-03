@@ -30,6 +30,6 @@ jobs:
         with:
           external_repository: YuzhongHe/YuzhongHe.github.io
           publish_branch: main
-          personal_token: ${{ secrets.hugo }}
+          personal_token: ${{ secrets.HUGO }}
           publish_dir: ./public
           commit_message: ${{ github.event.head_commit.message }}
