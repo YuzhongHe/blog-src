@@ -1,0 +1,35 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: true        # 如果 themes 是子模块，拉取它
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.151.0'
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy to Pages repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          external_repository: YuzhongHe/YuzhongHe.github.io
+          publish_branch: main
+          personal_token: ${{ secrets.PAGES_REPO_TOKEN }}
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
